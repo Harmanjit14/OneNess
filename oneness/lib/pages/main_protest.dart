@@ -125,7 +125,7 @@ class _MainProtestState extends State<MainProtest> {
                       return ListView.builder(
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
-                          itemCount: 3,
+                          itemCount: temp.length,
                           itemBuilder: (context, index) {
                             final id = temp[index]["id"];
                             final title = temp[index]["title"];

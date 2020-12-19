@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:geolocator/geolocator.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:oneness/models/authModel.dart';
 
-Future<int> sendDistress() {
+Future<void> sendDistress() {
   print("started");
   Timer(Duration(seconds: 0), () async {
     print("1");
@@ -45,9 +46,10 @@ Future<int> getAndsendLoc() async {
   double long = position.longitude;
   print(lat);
   print(long);
+  var date = DateTime.now();
   String getAuthToken = """
   mutation{
-    addPolice(latitude: "$lat" , longitude: "$long" ){
+    addEmergency(date : "${date.toString()}" ,latitude: "$lat" , longitude: "$long" ){
       __typename
     }
   }

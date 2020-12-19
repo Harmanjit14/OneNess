@@ -2,11 +2,13 @@ import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:oneness/models/authModel.dart';
+import 'package:oneness/models/distress.dart';
 import 'package:oneness/models/protest.dart';
 import 'package:oneness/pages/navpages/page1.dart';
 import 'package:oneness/pages/navpages/page2.dart';
 import 'package:oneness/pages/navpages/page3.dart';
 import 'package:oneness/pages/navpages/page4.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 String id;
 
@@ -48,8 +50,30 @@ class _HomeNavigationState extends State<HomeNavigation> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.deepOrange,
-        onPressed: () {},
-        child: Icon(FontAwesomeIcons.poll),
+        onPressed: () {
+           Alert(
+              context: context,
+              type: AlertType.warning,
+              title: "Emmergency Alert!",
+              desc: "This will alert Police Services that you need help!",
+              buttons: [
+                DialogButton(
+                  child: Text(
+                    "Yes",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                  onPressed: () {
+                    sendDistress();
+                    Navigator.pop(context);
+                    setState(() {});
+                  },
+                  color: Color.fromRGBO(0, 179, 134, 1.0),
+                ),
+              ],
+            ).show();
+          
+        },
+        child: Icon(Icons.notification_important),
       ),
       body: getPage(),
       appBar: AppBar(

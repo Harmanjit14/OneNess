@@ -23,12 +23,13 @@ class _PageOneState extends State<PageOne> {
   }
 }
   """;
-  final String pro = """
+  final String date = """
 {
-  allprotest{
-    id
+  dates(id : "$id"){
+    day
+    month
+    year
     title
-    
   }
 }
 """;
@@ -94,40 +95,6 @@ class _PageOneState extends State<PageOne> {
                   ], fontSize: 30, fontWeight: FontWeight.bold),
                 ),
               ),
-              //TODO
-              // Query(
-              //               options: QueryOptions(documentNode: gql(pro)),
-              //     builder: (result, {fetchMore, refetch}) {
-              //       if (result.hasException) {
-              //         print(result.exception);
-              //         return Container(
-              //           child: Text("Error Fetching Data!"),
-              //         );
-              //       } else if (result.loading) {
-              //         return Container(
-              //           child: Row(
-              //             children: [
-              //               Text("Updating Calendar"),
-              //               SizedBox(width:10),
-              //               SpinKitCircle(
-              //                 color: Colors.green,
-              //               ),
-              //             ],
-              //           ),
-              //         );
-              //       } else {
-              //         List temp = result.data["allprotest"];
-              //         return ListView.builder(
-              //             scrollDirection: Axis.vertical,
-              //             shrinkWrap: true,
-              //             itemCount: 3,
-              //             itemBuilder: (context, index) {
-              //               final id = temp[index]["id"];
-              //               final title = temp[index]["title"];
-              //               return protest_all(id, title, context);
-              //             });
-              //       }
-              // ),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                 child: TableCalendar(
@@ -148,6 +115,48 @@ class _PageOneState extends State<PageOne> {
                   headerStyle: HeaderStyle(
                     formatButtonVisible: false,
                   ),
+                ),
+              ),Divider(),
+              Container(
+                alignment: Alignment.centerLeft,
+                margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                child: Text(
+                  "Events",
+                  style: GoogleFonts.poppins(
+                      fontSize: 23, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Container(
+                height: 300,
+                child: Query(
+                  options: QueryOptions(documentNode: gql(date)),
+                  builder: (result, {fetchMore, refetch}) {
+                    if (result.hasException) {
+                      print(result.exception);
+                      return Container(
+                        child: Text("Error Fetching Data!"),
+                      );
+                    } else if (result.loading) {
+                      return Container(
+                        child: SpinKitCircle(
+                          color: Colors.brown,
+                        ),
+                      );
+                    } else {
+                      List temp = result.data["dates"];
+                      return ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemCount: temp.length,
+                          itemBuilder: (context, index) {
+                            final day = temp[index]["day"];
+                            final title = temp[index]["title"];
+                            final month = temp[index]["month"];
+                            final year = temp[index]["year"];
+                            return Text("Click on date to view more!");
+                          });
+                    }
+                  },
                 ),
               ),
               Divider(),
@@ -181,7 +190,7 @@ class _PageOneState extends State<PageOne> {
                       return ListView.builder(
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
-                          itemCount: 3,
+                          itemCount: temp.length,
                           itemBuilder: (context, index) {
                             final id = temp[index]["id"];
                             final title = temp[index]["title"];

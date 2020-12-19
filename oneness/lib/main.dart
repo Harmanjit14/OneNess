@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         "/auth": (context) => Auth(),
         "/main": (context) => MainProtest(),
       },
-      initialRoute: "/main",
+      initialRoute: "/auth",
     );
   }
 }

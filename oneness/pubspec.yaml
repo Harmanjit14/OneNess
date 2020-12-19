@@ -31,6 +31,7 @@ dependencies:
   custom_navigation_bar: ^0.6.0
   flutter_spinkit: "^4.1.2"
   font_awesome_flutter: ^8.8.1
+  graphql_flutter: ^3.1.0
   # animate_do: ^1.7.3
 
 dev_dependencies:

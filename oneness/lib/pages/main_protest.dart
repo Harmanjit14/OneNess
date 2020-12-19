@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:oneness/models/authModel.dart';
+import 'package:oneness/models/protest.dart';
 import 'package:oneness/pages/home_nav.dart';
 
 class MainProtest extends StatefulWidget {
@@ -15,82 +18,29 @@ class _MainProtestState extends State<MainProtest> {
   int dropVal = 0;
   int stateBut = 0;
 
-  Widget logChild() {
-    switch (stateBut) {
-      case 0:
-        {
-          return Text(
-            "Participate!",
-            style: GoogleFonts.poppins(
-                textStyle: TextStyle(fontSize: 20, color: Colors.white)),
-          );
-        }
-        break;
-      case 1:
-        {
-          return SpinKitDoubleBounce(
-            color: Colors.white,
-            size: 30.0,
-          );
-        }
-        break;
-      case 2:
-        {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                FontAwesomeIcons.checkCircle,
-                color: Colors.white,
-              ),
-              SizedBox(
-                width: 7,
-              ),
-              Text(
-                "Yay!",
-                style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold)),
-              ),
-            ],
-          );
-        }
-        break;
-      case 3:
-        {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                FontAwesomeIcons.timesCircle,
-                color: Colors.white,
-              ),
-              SizedBox(
-                width: 7,
-              ),
-              Text(
-                "Error!",
-                style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold)),
-              ),
-            ],
-          );
-        }
-        break;
-      default:
-        {
-          return Text(
-            "Continue",
-            style: GoogleFonts.poppins(
-                textStyle: TextStyle(fontSize: 20, color: Colors.white)),
-          );
-        }
-    }
+  Widget protest_all(String id, String title, BuildContext context) {
+    String i = id;
+    return Container(
+      margin: EdgeInsets.fromLTRB(20, 0, 20, 10),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: FlatButton(
+          padding: EdgeInsets.all(15),
+          color: Colors.brown,
+          onPressed: () async {
+            int temp = await getProtest(id);
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => HomeNavigation(id)));
+          },
+          child: Text(
+            title,
+            style: GoogleFonts.poppins(fontSize: 20, color: Colors.white),
+          ),
+        ),
+      ),
+    );
   }
 
   final String pro = """
@@ -193,26 +143,4 @@ class _MainProtestState extends State<MainProtest> {
       ),
     );
   }
-}
-
-Widget protest_all(String id, String title, BuildContext context) {
-  String i = id;
-  return Container(
-      margin: EdgeInsets.fromLTRB(20, 0, 20, 10),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: FlatButton(
-            padding: EdgeInsets.all(15),
-            color: Colors.brown,
-            onPressed: () {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => HomeNavigation(id)));
-            },
-            child: Text(
-              title,
-              style: GoogleFonts.poppins(fontSize: 20, color: Colors.white),
-            )),
-      ));
 }

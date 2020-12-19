@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:oneness/models/authModel.dart';
+import 'package:oneness/pages/home_nav.dart';
 
 class MainProtest extends StatefulWidget {
   @override
@@ -147,49 +148,44 @@ class _MainProtestState extends State<MainProtest> {
         backgroundColor: Colors.white,
         body: Container(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: [
               Container(
                 child: Image.asset("people2.gif"),
               ),
-              Column(
-                children: [
-                  Container(
-                    height: 200,
-                    margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                    alignment: Alignment.center,
-                    width: MediaQuery.of(context).size.width,
-                    child: Query(
-                      options: QueryOptions(documentNode: gql(pro)),
-                      builder: (result, {fetchMore, refetch}) {
-                        if (result.hasException) {
-                          print(result.exception);
-                          return Container(
-                            child: Text("Error Fetching Data!"),
-                          );
-                        } else if (result.loading) {
-                          return Container(
-                            child: SpinKitCircle(
-                              color: Colors.brown,
-                            ),
-                          );
-                        } else {
-                          List temp = result.data["allprotest"];
-                          return ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              itemCount: 3,
-                              itemBuilder: (context, index) {
-                                final id = temp[index]["id"];
-                                final title = temp[index]["title"];
-                                return protest_all(id, title);
-                              });
-                        }
-                      },
-                    ),
-                  ),
-                ],
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                alignment: Alignment.center,
+                width: MediaQuery.of(context).size.width,
+                child: Query(
+                  options: QueryOptions(documentNode: gql(pro)),
+                  builder: (result, {fetchMore, refetch}) {
+                    if (result.hasException) {
+                      print(result.exception);
+                      return Container(
+                        child: Text("Error Fetching Data!"),
+                      );
+                    } else if (result.loading) {
+                      return Container(
+                        child: SpinKitCircle(
+                          color: Colors.brown,
+                        ),
+                      );
+                    } else {
+                      List temp = result.data["allprotest"];
+                      return ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemCount: 3,
+                          itemBuilder: (context, index) {
+                            final id = temp[index]["id"];
+                            final title = temp[index]["title"];
+                            return protest_all(id, title, context);
+                          });
+                    }
+                  },
+                ),
               ),
             ],
           ),
@@ -199,7 +195,24 @@ class _MainProtestState extends State<MainProtest> {
   }
 }
 
-Widget protest_all(String id, String title) {
+Widget protest_all(String id, String title, BuildContext context) {
   String i = id;
-  return Container(child: FlatButton(onPressed: () {}, child: Text(title)));
+  return Container(
+      margin: EdgeInsets.fromLTRB(20, 0, 20, 10),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: FlatButton(
+            padding: EdgeInsets.all(15),
+            color: Colors.brown,
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => HomeNavigation(id)));
+            },
+            child: Text(
+              title,
+              style: GoogleFonts.poppins(fontSize: 20, color: Colors.white),
+            )),
+      ));
 }

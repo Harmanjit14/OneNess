@@ -43,9 +43,9 @@ class _HomeNavigationState extends State<HomeNavigation> {
               iconData: FontAwesomeIcons.home,
               title: "Home",
               onclick: () {
-                final FancyBottomNavigationState fState =
-                    bottomNavigationKey.currentState;
-                fState.setPage(2);
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => PageOne(),
+                ));
               }),
           TabData(
               iconData: FontAwesomeIcons.dollarSign,
@@ -55,15 +55,23 @@ class _HomeNavigationState extends State<HomeNavigation> {
                   builder: (context) => PageOne(),
                 ));
               }),
-          TabData(iconData: FontAwesomeIcons.handsHelping, title: "Resources"),
           TabData(
-              iconData: FontAwesomeIcons.map,
-              title: "Home",
+              iconData: FontAwesomeIcons.handsHelping,
+              title: "Resources",
               onclick: () {
-                final FancyBottomNavigationState fState =
-                    bottomNavigationKey.currentState;
-                fState.setPage(2);
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => PageOne(),
+                ));
               }),
+          TabData(
+            iconData: FontAwesomeIcons.map,
+            title: "Home",
+            onclick: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => PageOne(),
+              ));
+            },
+          ),
         ],
         initialSelection: 0,
         key: bottomNavigationKey,

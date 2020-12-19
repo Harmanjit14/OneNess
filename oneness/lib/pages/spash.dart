@@ -37,6 +37,26 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                 ),
               )),
+              Container(
+                  child: Text(
+                "Our lives begin to end the day we become silent about things that matter",
+                textAlign: TextAlign.center,
+                style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.normal,
+                    shadows: <Shadow>[
+                      Shadow(
+                        offset: Offset(0.5, 0.5),
+                        blurRadius: 2,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
+                    ],
+                  ),
+                
+                ),
+              )),
               SizedBox(height: 20),
               Container(
                 child: Image.asset("people.gif"),

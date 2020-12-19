@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oneness/pages/main_protest.dart';
 import 'pages/auth.dart';
 import 'pages/spash.dart';
 
@@ -19,8 +20,9 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => SplashScreen(),
         "/auth": (context) => Auth(),
+        "/main": (context) => MainProtest(),
       },
-      initialRoute: "/",
+      initialRoute: "/main",
     );
   }
 }

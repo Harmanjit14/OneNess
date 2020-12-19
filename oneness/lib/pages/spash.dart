@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
               )),
               SizedBox(height: 20),
               Container(
-                child: Image.asset("hands.gif"),
+                child: Image.asset("people.gif"),
               ),
             ],
           ),

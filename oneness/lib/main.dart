@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         "/": (context) => SplashScreen(),
         "/auth": (context) => Auth(),
       },
-      initialRoute: "/auth",
+      initialRoute: "/",
     );
   }
 }

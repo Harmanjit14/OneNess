@@ -98,37 +98,41 @@ class _AuthState extends State<Auth> {
       child: Container(
         child: Column(
           children: [
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                Container(
-                  alignment: Alignment.center,
-                  height: MediaQuery.of(context).size.height * 0.4,
-                  child: Image.asset(
-                    "people.gif",
-                    fit: BoxFit.cover,
+            Container(
+              margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    height: MediaQuery.of(context).size.height * 0.4,
+                    child: Image.asset(
+                      "globe.gif",
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-                Container(
-                  // alignment: Alignment.center,
-                  child: Text(
-                    "Login Here!",
-                    style: GoogleFonts.poppins(
-                        fontSize: 30,
-                        textStyle: TextStyle(color: Colors.white),
-                        shadows: <Shadow>[
-                          Shadow(
-                            offset: Offset(0.5, 0.5),
-                            blurRadius: 2,
-                            color: Colors.white,
-                          ),
-                        ]),
+                  Container(
+                    // alignment: Alignment.center,
+                    child: Text(
+                      "Login Here!",
+                      style: GoogleFonts.poppins(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          textStyle: TextStyle(color: Colors.black),
+                          shadows: <Shadow>[
+                            Shadow(
+                              offset: Offset(0.5, 0.5),
+                              blurRadius: 2,
+                              color: Colors.black,
+                            ),
+                          ]),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
               child: TextFormField(
                 onChanged: (val) {
                   email = val;
@@ -137,7 +141,7 @@ class _AuthState extends State<Auth> {
                 style: TextStyle(fontSize: 18),
                 decoration: InputDecoration(
                     focusColor: Colors.white,
-                    fillColor: Colors.white,
+                    fillColor: Colors.grey[200],
                     filled: true,
                     hintText: "Email",
                     prefixIcon: Icon(
@@ -161,7 +165,7 @@ class _AuthState extends State<Auth> {
                 obscuringCharacter: "*",
                 decoration: InputDecoration(
                     focusColor: Colors.white,
-                    fillColor: Colors.white,
+                    fillColor: Colors.grey[200],
                     filled: true,
                     hintText: "Password",
                     prefixIcon: Icon(FontAwesomeIcons.lock),
@@ -178,32 +182,33 @@ class _AuthState extends State<Auth> {
                 borderRadius: BorderRadius.circular(20),
                 child: RaisedButton(
                   padding: EdgeInsets.all(15),
-                  onPressed: () async {
-                    stateBut = 1;
-                    setState(() {});
-                    int temp = 0; //await getToken();
-                    if (temp == 1) {
-                      Timer(Duration(seconds: 2), () {
-                        stateBut = 2;
-                        setState(() {});
-                      });
-                      Timer(Duration(seconds: 3), () {
-                        password = "";
-                        Navigator.pushReplacementNamed(context, "/nav");
-                      });
-                    } else {
-                      Timer(Duration(seconds: 2), () {
-                        stateBut = 3;
-                        setState(() {});
-                      });
-                      Timer(Duration(seconds: 4), () {
-                        stateBut = 0;
-                        setState(() {});
-                      });
-                    }
-                  },
+                  onPressed: () {},
+                  //  () async {
+                  //   stateBut = 1;
+                  //   setState(() {});
+                  //   int temp = 0; //await getToken();
+                  //   if (temp == 1) {
+                  //     Timer(Duration(seconds: 2), () {
+                  //       stateBut = 2;
+                  //       setState(() {});
+                  //     });
+                  //     Timer(Duration(seconds: 3), () {
+                  //       password = "";
+                  //       Navigator.pushReplacementNamed(context, "/nav");
+                  //     });
+                  //   } else {
+                  //     Timer(Duration(seconds: 2), () {
+                  //       stateBut = 3;
+                  //       setState(() {});
+                  //     });
+                  //     Timer(Duration(seconds: 4), () {
+                  //       stateBut = 0;
+                  //       setState(() {});
+                  //     });
+                  //   }
+                  // },
                   child: logChild(),
-                  color: Colors.blue[800],
+                  color: Colors.greenAccent[700],
                 ),
               ),
             ),
@@ -217,12 +222,12 @@ class _AuthState extends State<Auth> {
                   Container(
                       child: Text(
                     "Don't have an account ?",
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                    style: TextStyle(fontSize: 20, color: Colors.black),
                   )),
                   SizedBox(width: 20),
                   Container(
                     child: IconButton(
-                        color: Colors.white,
+                        color: Colors.black,
                         iconSize: 30,
                         icon: Icon(FontAwesomeIcons.arrowRight),
                         onPressed: () {}),
@@ -240,9 +245,9 @@ class _AuthState extends State<Auth> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: SafeArea(
-        child: logChild(),
+        child: login(),
       ),
     );
   }

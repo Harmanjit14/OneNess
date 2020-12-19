@@ -17,7 +17,7 @@ class _MainProtestState extends State<MainProtest> {
       case 0:
         {
           return Text(
-            "Continue",
+            "Participate!",
             style: GoogleFonts.poppins(
                 textStyle: TextStyle(fontSize: 20, color: Colors.white)),
           );

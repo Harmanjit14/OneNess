@@ -32,7 +32,7 @@ dependencies:
   flutter_spinkit: "^4.1.2"
   font_awesome_flutter: ^8.8.1
   graphql_flutter: ^3.1.0
-  # animate_do: ^1.7.3
+  fancy_bottom_navigation: ^0.3.2
 
 dev_dependencies:
   flutter_test:

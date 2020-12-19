@@ -189,8 +189,7 @@ class _AuthState extends State<Auth> {
                     setState(() {});
                     int temp = await getToken(email, password);
                     int temp2 = await me();
-                    int temp3 = await getProtest();
-                    if (temp == 1 && temp2 == 1 && temp3 == 1) {
+                    if (temp == 1 && temp2 == 1) {
                       Timer(Duration(seconds: 2), () {
                         stateBut = 2;
                         setState(() {});
@@ -267,7 +266,6 @@ class _AuthState extends State<Auth> {
                     ),
                   ),
                   Container(
-                    // alignment: Alignment.center,
                     child: Text(
                       "Register Here!",
                       style: GoogleFonts.poppins(
@@ -365,8 +363,7 @@ class _AuthState extends State<Auth> {
                     int temp = await createUser(email, password, name);
                     int temp3 = await getToken(email, password);
                     int temp2 = await me();
-                    int temp4 = await getProtest();
-                    if (temp == 1 && temp2 == 1 && temp3 == 1 && temp4 == 1) {
+                    if (temp == 1 && temp2 == 1 && temp3 == 1) {
                       Timer(Duration(seconds: 2), () {
                         stateBut = 2;
                         setState(() {});

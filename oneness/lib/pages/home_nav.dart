@@ -45,6 +45,12 @@ class _HomeNavigationState extends State<HomeNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepOrange,
+        onPressed: () {},
+        child: Icon(FontAwesomeIcons.poll),
+      ),
       body: getPage(),
       appBar: AppBar(
         title: Text(title),
@@ -68,15 +74,15 @@ class _HomeNavigationState extends State<HomeNavigation> {
             title: "Home",
           ),
           TabData(
-            iconData: FontAwesomeIcons.dollarSign,
+            iconData: FontAwesomeIcons.handsHelping,
             title: "Donations",
           ),
           TabData(
-            iconData: FontAwesomeIcons.handsHelping,
+            iconData: FontAwesomeIcons.breadSlice,
             title: "Resources",
           ),
           TabData(
-            iconData: FontAwesomeIcons.map,
+            iconData: FontAwesomeIcons.mapMarked,
             title: "Home",
           ),
         ],

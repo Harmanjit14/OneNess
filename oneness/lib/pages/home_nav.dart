@@ -1,5 +1,6 @@
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:oneness/models/authModel.dart';
 import 'package:oneness/models/protest.dart';
 import 'package:oneness/pages/navpages/page1.dart';
@@ -39,7 +40,7 @@ class _HomeNavigationState extends State<HomeNavigation> {
       bottomNavigationBar: FancyBottomNavigation(
         tabs: [
           TabData(
-              iconData: Icons.home,
+              iconData: FontAwesomeIcons.home,
               title: "Home",
               onclick: () {
                 final FancyBottomNavigationState fState =
@@ -47,15 +48,22 @@ class _HomeNavigationState extends State<HomeNavigation> {
                 fState.setPage(2);
               }),
           TabData(
-            iconData: Icons.search,
-            title: "Search",
-            onclick: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => PageOne(),
-              ),
-            ),
-          ),
-          TabData(iconData: Icons.shopping_cart, title: "Basket")
+              iconData: FontAwesomeIcons.dollarSign,
+              title: "Donations",
+              onclick: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => PageOne(),
+                ));
+              }),
+          TabData(iconData: FontAwesomeIcons.handsHelping, title: "Resources"),
+          TabData(
+              iconData: FontAwesomeIcons.map,
+              title: "Home",
+              onclick: () {
+                final FancyBottomNavigationState fState =
+                    bottomNavigationKey.currentState;
+                fState.setPage(2);
+              }),
         ],
         initialSelection: 0,
         key: bottomNavigationKey,

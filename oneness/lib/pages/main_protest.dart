@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:oneness/models/authModel.dart';
 
 class MainProtest extends StatefulWidget {
   @override
@@ -44,7 +45,7 @@ class _MainProtestState extends State<MainProtest> {
                 width: 7,
               ),
               Text(
-                "Success",
+                "Yay!",
                 style: GoogleFonts.poppins(
                     textStyle: TextStyle(
                         fontSize: 20,
@@ -68,7 +69,7 @@ class _MainProtestState extends State<MainProtest> {
                 width: 7,
               ),
               Text(
-                "Check Credentials!",
+                "Error!",
                 style: GoogleFonts.poppins(
                     textStyle: TextStyle(
                         fontSize: 20,
@@ -95,7 +96,11 @@ class _MainProtestState extends State<MainProtest> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.brown,
-        actions: [IconButton(icon: Icon(Icons.logout), onPressed: () {})],
+        actions: [IconButton(icon: Icon(Icons.logout), onPressed: () {
+          finName="";
+          token = "";
+          Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
+        })],
         title: Text(
           "Choose your Protest",
           style: GoogleFonts.poppins(

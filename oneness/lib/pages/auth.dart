@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:oneness/models/authModel.dart';
+import 'package:oneness/models/protest.dart';
 
 class Auth extends StatefulWidget {
   @override
@@ -188,7 +189,8 @@ class _AuthState extends State<Auth> {
                     setState(() {});
                     int temp = await getToken(email, password);
                     int temp2 = await me();
-                    if (temp == 1 && temp2 == 1) {
+                    int temp3 = await getProtest();
+                    if (temp == 1 && temp2 == 1 && temp3 == 1) {
                       Timer(Duration(seconds: 2), () {
                         stateBut = 2;
                         setState(() {});
@@ -310,7 +312,7 @@ class _AuthState extends State<Auth> {
               margin: EdgeInsets.fromLTRB(20, 15, 20, 0),
               child: TextFormField(
                 onChanged: (val) {
-                  email = val;
+                  name = val;
                 },
                 keyboardType: TextInputType.text,
                 style: TextStyle(fontSize: 18),
@@ -363,7 +365,8 @@ class _AuthState extends State<Auth> {
                     int temp = await createUser(email, password, name);
                     int temp3 = await getToken(email, password);
                     int temp2 = await me();
-                    if (temp == 1 && temp2 == 1 && temp3 == 1) {
+                    int temp4 = await getProtest();
+                    if (temp == 1 && temp2 == 1 && temp3 == 1 && temp4 == 1) {
                       Timer(Duration(seconds: 2), () {
                         stateBut = 2;
                         setState(() {});

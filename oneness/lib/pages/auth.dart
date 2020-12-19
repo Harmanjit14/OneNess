@@ -1,9 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:oneness/models/authModel.dart';
 
 class Auth extends StatefulWidget {
   @override
@@ -183,31 +183,31 @@ class _AuthState extends State<Auth> {
                 borderRadius: BorderRadius.circular(20),
                 child: RaisedButton(
                   padding: EdgeInsets.all(15),
-                  onPressed: () {},
-                  //  () async {
-                  //   stateBut = 1;
-                  //   setState(() {});
-                  //   int temp = 0; //await getToken();
-                  //   if (temp == 1) {
-                  //     Timer(Duration(seconds: 2), () {
-                  //       stateBut = 2;
-                  //       setState(() {});
-                  //     });
-                  //     Timer(Duration(seconds: 3), () {
-                  //       password = "";
-                  //       Navigator.pushReplacementNamed(context, "/nav");
-                  //     });
-                  //   } else {
-                  //     Timer(Duration(seconds: 2), () {
-                  //       stateBut = 3;
-                  //       setState(() {});
-                  //     });
-                  //     Timer(Duration(seconds: 4), () {
-                  //       stateBut = 0;
-                  //       setState(() {});
-                  //     });
-                  //   }
-                  // },
+                  onPressed: () async {
+                    stateBut = 1;
+                    setState(() {});
+                    int temp = await getToken(email, password);
+                    int temp2 = await me();
+                    if (temp == 1 && temp2 == 1) {
+                      Timer(Duration(seconds: 2), () {
+                        stateBut = 2;
+                        setState(() {});
+                      });
+                      Timer(Duration(seconds: 3), () {
+                        password = "";
+                        Navigator.pushReplacementNamed(context, "/main");
+                      });
+                    } else {
+                      Timer(Duration(seconds: 2), () {
+                        stateBut = 3;
+                        setState(() {});
+                      });
+                      Timer(Duration(seconds: 4), () {
+                        stateBut = 0;
+                        setState(() {});
+                      });
+                    }
+                  },
                   child: logChild(),
                   color: Colors.greenAccent[700],
                 ),
@@ -357,31 +357,32 @@ class _AuthState extends State<Auth> {
                 borderRadius: BorderRadius.circular(20),
                 child: RaisedButton(
                   padding: EdgeInsets.all(15),
-                  onPressed: () {},
-                  //  () async {
-                  //   stateBut = 1;
-                  //   setState(() {});
-                  //   int temp = 0; //await getToken();
-                  //   if (temp == 1) {
-                  //     Timer(Duration(seconds: 2), () {
-                  //       stateBut = 2;
-                  //       setState(() {});
-                  //     });
-                  //     Timer(Duration(seconds: 3), () {
-                  //       password = "";
-                  //       Navigator.pushReplacementNamed(context, "/nav");
-                  //     });
-                  //   } else {
-                  //     Timer(Duration(seconds: 2), () {
-                  //       stateBut = 3;
-                  //       setState(() {});
-                  //     });
-                  //     Timer(Duration(seconds: 4), () {
-                  //       stateBut = 0;
-                  //       setState(() {});
-                  //     });
-                  //   }
-                  // },
+                  onPressed: () async {
+                    stateBut = 1;
+                    setState(() {});
+                    int temp = await createUser(email, password, name);
+                    int temp3 = await getToken(email, password);
+                    int temp2 = await me();
+                    if (temp == 1 && temp2 == 1 && temp3 == 1) {
+                      Timer(Duration(seconds: 2), () {
+                        stateBut = 2;
+                        setState(() {});
+                      });
+                      Timer(Duration(seconds: 3), () {
+                        password = "";
+                        Navigator.pushReplacementNamed(context, "/main");
+                      });
+                    } else {
+                      Timer(Duration(seconds: 2), () {
+                        stateBut = 3;
+                        setState(() {});
+                      });
+                      Timer(Duration(seconds: 4), () {
+                        stateBut = 0;
+                        setState(() {});
+                      });
+                    }
+                  },
                   child: logChild(),
                   color: Colors.greenAccent[700],
                 ),

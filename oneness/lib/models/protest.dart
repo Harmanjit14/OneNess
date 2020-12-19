@@ -3,6 +3,7 @@ import 'package:oneness/models/authModel.dart';
 
 String upi;
 int participants;
+String title;
 
 Future<int> getProtest(String id) async {
   final HttpLink _httpLink = HttpLink(
@@ -40,6 +41,7 @@ Future<int> getProtest(String id) async {
   } else {
     participants = result.data["oneprotest"]["participants"];
     upi = result.data["oneprotest"]["upiId"];
+    title = result.data["oneprotest"]["title"];
     print("done");
     return 1;
   }

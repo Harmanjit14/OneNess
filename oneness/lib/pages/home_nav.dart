@@ -1,5 +1,7 @@
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:oneness/models/authModel.dart';
+import 'package:oneness/models/protest.dart';
 import 'package:oneness/pages/navpages/page1.dart';
 
 String id;
@@ -19,7 +21,20 @@ class _HomeNavigationState extends State<HomeNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(title),
+        centerTitle: true,
+        actions: [
+          IconButton(
+              icon: Icon(Icons.logout),
+              onPressed: () {
+                finName = "";
+                token = "";
+                Navigator.pushNamedAndRemoveUntil(
+                    context, "/", (route) => false);
+              })
+        ],
+      ),
       backgroundColor: Colors.white,
       bottomNavigationBar: FancyBottomNavigation(
         tabs: [
@@ -42,7 +57,7 @@ class _HomeNavigationState extends State<HomeNavigation> {
           ),
           TabData(iconData: Icons.shopping_cart, title: "Basket")
         ],
-        initialSelection: 1,
+        initialSelection: 0,
         key: bottomNavigationKey,
         onTabChangedListener: (position) {
           setState(() {

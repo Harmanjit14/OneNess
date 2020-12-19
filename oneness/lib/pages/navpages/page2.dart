@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-class PageOne extends StatefulWidget {
+
+class PageTwo extends StatefulWidget {
   @override
-  _PageOneState createState() => _PageOneState();
+  _PageTwoState createState() => _PageTwoState();
 }
 
-class _PageOneState extends State<PageOne> {
+class _PageTwoState extends State<PageTwo> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.pink,
+      child: Text("two"),
       
     );
   }

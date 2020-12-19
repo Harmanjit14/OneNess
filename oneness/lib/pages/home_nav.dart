@@ -4,6 +4,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:oneness/models/authModel.dart';
 import 'package:oneness/models/protest.dart';
 import 'package:oneness/pages/navpages/page1.dart';
+import 'package:oneness/pages/navpages/page2.dart';
+import 'package:oneness/pages/navpages/page3.dart';
+import 'package:oneness/pages/navpages/page4.dart';
 
 String id;
 
@@ -17,11 +20,32 @@ class HomeNavigation extends StatefulWidget {
 
 class _HomeNavigationState extends State<HomeNavigation> {
   int currentPage = 0;
+  int index = 0;
+
+  Widget getPage() {
+    switch (index) {
+      case 0:
+        return PageOne();
+        break;
+      case 1:
+        return PageTwo();
+        break;
+      case 2:
+        return PageThree();
+        break;
+      case 3:
+        return PageFour();
+        break;
+      default:
+        return PageOne();
+    }
+  }
 
   GlobalKey bottomNavigationKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: getPage(),
       appBar: AppBar(
         title: Text(title),
         centerTitle: true,
@@ -40,42 +64,26 @@ class _HomeNavigationState extends State<HomeNavigation> {
       bottomNavigationBar: FancyBottomNavigation(
         tabs: [
           TabData(
-              iconData: FontAwesomeIcons.home,
-              title: "Home",
-              onclick: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => PageOne(),
-                ));
-              }),
+            iconData: FontAwesomeIcons.home,
+            title: "Home",
+          ),
           TabData(
-              iconData: FontAwesomeIcons.dollarSign,
-              title: "Donations",
-              onclick: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => PageOne(),
-                ));
-              }),
+            iconData: FontAwesomeIcons.dollarSign,
+            title: "Donations",
+          ),
           TabData(
-              iconData: FontAwesomeIcons.handsHelping,
-              title: "Resources",
-              onclick: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => PageOne(),
-                ));
-              }),
+            iconData: FontAwesomeIcons.handsHelping,
+            title: "Resources",
+          ),
           TabData(
             iconData: FontAwesomeIcons.map,
             title: "Home",
-            onclick: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => PageOne(),
-              ));
-            },
           ),
         ],
         initialSelection: 0,
         key: bottomNavigationKey,
         onTabChangedListener: (position) {
+          index = position;
           setState(() {
             currentPage = position;
           });

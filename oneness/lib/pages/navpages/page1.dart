@@ -8,6 +8,8 @@ class _PageOneState extends State<PageOne> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.amber,
+      child: Text("one"),
       
     );
   }

@@ -88,7 +88,36 @@ class _PageTwoState extends State<PageTwo> {
                 },
               ),
             ),
-            Container(child: Image.asset("donation.gif"))
+            Stack(alignment: Alignment.center, children: [
+              Container(
+                child: Image.asset("donation.gif"),
+              ),
+              Container(
+                  margin: EdgeInsets.fromLTRB(20, 5, 20, 0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(30),
+                    child: FlatButton(
+                      padding: EdgeInsets.all(15),
+                      color: Colors.green,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.add,
+                            size: 26,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            "Add a Donation",
+                            style: GoogleFonts.poppins(
+                                color: Colors.white, fontSize: 16),
+                          ),
+                        ],
+                      ),
+                      onPressed: () {},
+                    ),
+                  )),
+            ]),
           ],
         ),
       )),

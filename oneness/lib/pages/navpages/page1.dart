@@ -153,7 +153,7 @@ class _PageOneState extends State<PageOne> {
                             final title = temp[index]["title"];
                             final month = temp[index]["month"];
                             final year = temp[index]["year"];
-                            return Text("Click on date to view more!");
+                            return dateAdd(day,month,year,title);
                           });
                     }
                   },
@@ -192,7 +192,6 @@ class _PageOneState extends State<PageOne> {
                           shrinkWrap: true,
                           itemCount: temp.length,
                           itemBuilder: (context, index) {
-                            final id = temp[index]["id"];
                             final title = temp[index]["title"];
                             final body = temp[index]["body"];
                             final author = temp[index]["author"]["name"];
@@ -216,4 +215,7 @@ Widget update(String title, String body, String author) {
       child: Card(
         child: Text(title),
       ));
+}
+Widget dateAdd(int day, int month, int year, String title){
+  return Text(day.toString()+" "+month.toString()+" "+year.toString()+" ");
 }

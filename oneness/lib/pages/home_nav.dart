@@ -107,7 +107,7 @@ class _HomeNavigationState extends State<HomeNavigation> {
           ),
           TabData(
             iconData: FontAwesomeIcons.mapMarked,
-            title: "Home",
+            title: "Map",
           ),
         ],
         initialSelection: 0,

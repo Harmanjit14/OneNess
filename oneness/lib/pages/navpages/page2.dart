@@ -44,83 +44,103 @@ class _PageTwoState extends State<PageTwo> {
     return GraphQLProvider(
       client: client,
       child: Container(
-          child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              alignment: Alignment.centerLeft,
-              margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
-              child: Text(
-                "Recent Donations!",
-                style: GoogleFonts.poppins(
-                    fontSize: 30, fontWeight: FontWeight.bold),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-              height: 300,
-              child: Query(
-                options: QueryOptions(documentNode: gql(allDonations)),
-                builder: (result, {fetchMore, refetch}) {
-                  if (result.hasException) {
-                    print(result.exception);
-                    return Container(
-                      child: Text("Error Fetching Data!"),
-                    );
-                  } else if (result.loading) {
-                    return Container(
-                      child: SpinKitCircle(
-                        color: Colors.brown,
-                      ),
-                    );
-                  } else {
-                    List temp = result.data["donations"];
-                    return ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        itemCount: temp.length,
-                        itemBuilder: (context, index) {
-                          final String by = temp[index]["madeby"]["name"];
-                          final int amount = temp[index]["amount"];
-                          return don(by, amount);
-                        });
-                  }
-                },
-              ),
-            ),
-            Stack(alignment: Alignment.center, children: [
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
               Container(
-                child: Image.asset("donation.gif"),
+                alignment: Alignment.centerLeft,
+                margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                child: Text(
+                  "Recent Donations",
+                  style: GoogleFonts.poppins(
+                      fontSize: 30, fontWeight: FontWeight.bold),
+                ),
               ),
               Container(
-                  margin: EdgeInsets.fromLTRB(20, 5, 20, 0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
-                    child: FlatButton(
-                      padding: EdgeInsets.all(15),
-                      color: Colors.green,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.add,
-                            size: 26,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            "Add a Donation",
-                            style: GoogleFonts.poppins(
-                                color: Colors.white, fontSize: 16),
-                          ),
-                        ],
-                      ),
-                      onPressed: () {},
-                    ),
-                  )),
-            ]),
-          ],
+                margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                height: 300,
+                child: Query(
+                  options: QueryOptions(documentNode: gql(allDonations)),
+                  builder: (result, {fetchMore, refetch}) {
+                    if (result.hasException) {
+                      print(result.exception);
+                      return Container(
+                        child: Text("Error Fetching Data!"),
+                      );
+                    } else if (result.loading) {
+                      return Container(
+                        child: SpinKitCircle(
+                          color: Colors.brown,
+                        ),
+                      );
+                    } else {
+                      List temp = result.data["donations"];
+                      return ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemCount: temp.length,
+                          itemBuilder: (context, index) {
+                            final by = temp[index]["madeby"]["name"];
+                            final amount = temp[index]["amount"];
+                            return don(by, amount);
+                          });
+                    }
+                  },
+                ),
+              ),
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                    child: Image.asset("donation.gif"),
+                  ),
+                ],
+              ),
+              Container(
+                alignment: Alignment.centerLeft,
+                margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                child: Text(
+                  "Connected NGO's",
+                  style: GoogleFonts.poppins(
+                      fontSize: 30, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                height: 300,
+                child: Query(
+                  options: QueryOptions(documentNode: gql(allDonations)),
+                  builder: (result, {fetchMore, refetch}) {
+                    if (result.hasException) {
+                      print(result.exception);
+                      return Container(
+                        child: Text("Error Fetching Data!"),
+                      );
+                    } else if (result.loading) {
+                      return Container(
+                        child: SpinKitCircle(
+                          color: Colors.brown,
+                        ),
+                      );
+                    } else {
+                      List temp = result.data["donations"];
+                      return ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemCount: temp.length,
+                          itemBuilder: (context, index) {
+                            final by = temp[index]["madeby"]["name"];
+                            final amount = temp[index]["amount"];
+                            return don(by, amount);
+                          });
+                    }
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
-      )),
+      ),
     );
   }
 }

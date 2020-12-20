@@ -47,43 +47,47 @@ class _PageThreeState extends State<PageThree> {
               alignment: Alignment.centerLeft,
               margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
               child: Text(
-                "Recent Donations!",
+                "Required Resources!",
                 style: GoogleFonts.poppins(
                     fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
             Container(
+              margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
               height: 500,
-              margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-              child: Query(
-                options: QueryOptions(documentNode: gql(resource)),
-                builder: (result, {fetchMore, refetch}) {
-                  if (result.hasException) {
-                    print(result.exception);
-                    return Container(
-                      child: Text("Error Fetching Data!"),
-                    );
-                  } else if (result.loading) {
-                    return Container(
-                      child: SpinKitCircle(
-                        color: Colors.brown,
+              child: ListView(
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        height: 100,
+                        width: 100,
+                        child: Image.network(
+                          "https://www.verywellhealth.com/thmb/ZoA6KJefIB58oJPzbFX-H-Roq1o=/2880x1920/filters:fill(87E3EF,1)/the-wheat-allergy-diet-guide-1324279-primary-recirc-70ef0114e17e4f7b9a1faeab8b516e1e.jpg",
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    );
-                  } else {
-                    List temp = result.data["resources"];
-                    return ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        itemCount: temp.length,
-                        itemBuilder: (context, index) {
-                          final String title = temp[index]["title"];
-                          final int amount = temp[index]["quantity"];
-                          return don(title, amount);
-                        });
-                  }
-                },
+                      SizedBox(width: 30),
+                      Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Wheat",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            Text(
+                              "amount 3 kg",
+                              style: TextStyle(fontSize: 20),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  )
+                ],
               ),
-            ),
+            )
           ],
         ),
       )),

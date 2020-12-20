@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -95,47 +94,49 @@ class _MainProtestState extends State<MainProtest> {
         ),
         backgroundColor: Colors.white,
         body: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Container(
-                child: Image.asset("people2.gif"),
-              ),
-              Container(
-                margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                alignment: Alignment.center,
-                width: MediaQuery.of(context).size.width,
-                child: Query(
-                  options: QueryOptions(documentNode: gql(pro)),
-                  builder: (result, {fetchMore, refetch}) {
-                    if (result.hasException) {
-                      print(result.exception);
-                      return Container(
-                        child: Text("Error Fetching Data!"),
-                      );
-                    } else if (result.loading) {
-                      return Container(
-                        child: SpinKitCircle(
-                          color: Colors.brown,
-                        ),
-                      );
-                    } else {
-                      List temp = result.data["allprotest"];
-                      return ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          itemCount: temp.length,
-                          itemBuilder: (context, index) {
-                            final id = temp[index]["id"];
-                            final title = temp[index]["title"];
-                            return protest_all(id, title, context);
-                          });
-                    }
-                  },
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Container(
+                  child: Image.asset("people2.gif"),
                 ),
-              ),
-            ],
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width,
+                  child: Query(
+                    options: QueryOptions(documentNode: gql(pro)),
+                    builder: (result, {fetchMore, refetch}) {
+                      if (result.hasException) {
+                        print(result.exception);
+                        return Container(
+                          child: Text("Error Fetching Data!"),
+                        );
+                      } else if (result.loading) {
+                        return Container(
+                          child: SpinKitCircle(
+                            color: Colors.brown,
+                          ),
+                        );
+                      } else {
+                        List temp = result.data["allprotest"];
+                        return ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            itemCount: temp.length,
+                            itemBuilder: (context, index) {
+                              final id = temp[index]["id"];
+                              final title = temp[index]["title"];
+                              return protest_all(id, title, context);
+                            });
+                      }
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

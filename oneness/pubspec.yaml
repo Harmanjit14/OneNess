@@ -57,6 +57,7 @@ flutter:
     - hands.gif
     - people.gif
     - people2.gif
+    - donation.gif
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

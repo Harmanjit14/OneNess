@@ -2,8 +2,8 @@
 HackBattle2020<br />
 Server for tracking distress signals from app -> https://oneness-portal.web.app/ <br />
 Backend Server -> http://oneness-backend.herokuapp.com/ <br />
-email : mahira@email.com <br />
-password : 123456 <br /><br /><br />
+email for login in server : mahira@email.com <br />
+password for login: 123456 <br /><br /><br />
 About the Project -> https://www.youtube.com/watch?v=wXXzk4HOYI8
 <br /><br /><br />
 
